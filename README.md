@@ -4,3 +4,5 @@
 # 环境安装
 1. npm run web3
 2. npm install -g truffle
+3. npm install --save ethers
+4. truffle develop
