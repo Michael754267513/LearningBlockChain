@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  const aa = "是我一个小青蛙，呱呱呱";
+  console.log(aa)
+// 条件判断
+  const  a = true;b = false;
+  if (a === true) {
+    if(b !== false ){
+
+    }
+  }else if (a !== true){
+
+  }else {
+
+  }
+
+ // 数据类型
+  const  list_array = [3 ,2 ,1 ,"哈哈"]
+  console.log('数组：',list_array)
+  console.log('数组长度：',list_array.length)
+  console.log('切片：', list_array.slice(1,2))
+  console.log('添加元素 aa:',list_array.push('aa'), list_array)
+  console.log('尾部删除元素',list_array.pop(), list_array)
+  console.log('头部添加',list_array.unshift("A","B"), list_array)
+  console.log('头部删除',list_array.shift(), list_array)
+//   shift 与 pop 的区别在于 数组为空的时候，shift 不会报错
+  console.log('排序：',list_array.sort())
+  console.log('反转：',list_array.reverse())
+  console.log('数组链接：',list_array.concat(list_array))
+  console.log('数据串联起来返回字符串：',list_array.join('--'))
+
+  // 对象 按照json 处理完事
+
+  // 遍历对象
+  const o = {
+    name: 'Jack',
+    age: 20,
+    city: 'Beijing'
+  };
+  for (let key in o) {
+    console.log(key); // 'name', 'age', 'city'
+  }
+  // 遍历数组
+  for (let i in list_array) {
+    console.log(i); // '0', '1', '2'
+    console.log(list_array[i]); // 'A', 'B', 'C'
+  }
+  // while(真假true)  do-while
+  let n = 0;
+  do {
+    n = n + 1;
+  } while (n < 10);
+// map 与set
+
+
+</script>
+</html>
