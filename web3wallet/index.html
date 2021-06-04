@@ -1,0 +1,88 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>web3.js使用</title>
+    <script src=" node_modules/web3/dist/web3.min.js"></script>
+    <style type="text/css">
+        span {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<h1>web3.js与智能合约交互</h1>
+<div id="info">获取名字呀</div>
+<span>
+        <input type="text" id="myVal"/>
+        <button onclick="setVal()">修改</button>
+    </span>
+
+<script>
+    //1、利用以太坊provider创建web3
+    var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545"));
+
+    //2、智能合约的abi，abi是由编译器生成的
+    var abi =   [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "newName",
+                    "type": "string"
+                }
+            ],
+            "name": "set",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "get",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+
+    //合约地址，发布之后在以太坊上生成的合约地址
+    var contractAddress = "0xcFFe3767eD87961E9Ca8464e917D50cB18D8ad98";
+    //4、根据合约 abi 获取合约实例
+    var ZombieFactory = new web3.eth.Contract(abi,contractAddress, {
+        gasPrice: '50000' // default gas price in wei, 20 gwei in this case
+    });
+
+    // 读取事件
+    // ZombieFactory.methods.get().call()
+    // .then(console.log)
+    // 获取数据
+    ZombieFactory.methods.get().call().then(function (res) {
+        document.getElementById("info").innerHTML =  res
+    });
+
+
+
+    function setVal() {
+        // 修改数据
+        ZombieFactory.methods.set(document.getElementById("myVal").value).send({from: '0x2baB084466830BcA78bebC26E8A3Bb59BC2Aa28F'},function (err,res) {
+            if(err) {
+                console.log(err)
+            }
+            console.log(res)
+        })
+    }
+    
+</script>
+</body>
+</html>
